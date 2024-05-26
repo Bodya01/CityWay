@@ -1,5 +1,6 @@
 ﻿using CityWay.Domain.Interfaces;
 using CityWay.Infrastructure.Context;
+using CityWay.Infrastructure.Helpers;
 using CityWay.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,7 @@ namespace CityWay.Infrastructure
             var context = provider.GetRequiredService<CityWayContext>();
             context.Database.Migrate();
             context.Database.EnsureCreated();
+            DataSeeder.SeedData(context);
 
             return services;
         }
