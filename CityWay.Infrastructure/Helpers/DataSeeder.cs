@@ -138,20 +138,11 @@ namespace CityWay.Infrastructure.Helpers
                     new Stop
                     {
                         RouteId = route.Id,
-                        Name = "Скнилівок",
-                        Direction = PointDirections.Backward,
-                        Latitude = 49.813349000000002,
-                        Longitude = 23.984514999999998,
-                        Order = 9
-                    },
-                    new Stop
-                    {
-                        RouteId = route.Id,
                         Name = "вул. Боткіна",
                         Direction = PointDirections.Backward,
                         Latitude = 49.811157999999999,
                         Longitude = 23.991672000000001,
-                        Order = 10
+                        Order = 9
                     },
                     new Stop
                     {
@@ -160,7 +151,7 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.810513,
                         Longitude = 23.998134,
-                        Order = 11
+                        Order = 10
                     },
                     new Stop
                     {
@@ -169,25 +160,16 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.809970999999997,
                         Longitude = 24.004591999999999,
+                        Order = 11
+                    },
+                    new Stop
+                    {
+                        RouteId = route.Id,
+                        Name = "Тролейбусне депо",
+                        Direction = PointDirections.Backward,
+                        Latitude = 49.80753,
+                        Longitude = 24.007344,
                         Order = 12
-                    },
-                    new Stop
-                    {
-                        RouteId = route.Id,
-                        Name = "Тролейбусне депо",
-                        Direction = PointDirections.Backward,
-                        Latitude = 49.80753,
-                        Longitude = 24.007344,
-                        Order = 13
-                    },
-                    new Stop
-                    {
-                        RouteId = route.Id,
-                        Name = "Тролейбусне депо",
-                        Direction = PointDirections.Backward,
-                        Latitude = 49.80753,
-                        Longitude = 24.007344,
-                        Order = 13
                     },
                     new Stop
                     {
@@ -196,7 +178,7 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.806002999999997,
                         Longitude = 24.012087000000001,
-                        Order = 14
+                        Order = 13
                     },
                     new Stop
                     {
@@ -205,7 +187,7 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.805300000000003,
                         Longitude = 24.018253000000001,
-                        Order = 15
+                        Order = 14
                     },
                     new Stop
                     {
@@ -214,7 +196,7 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.801704000000001,
                         Longitude = 24.018635,
-                        Order = 16
+                        Order = 15
                     },
                     new Stop
                     {
@@ -223,7 +205,7 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.800265000000003,
                         Longitude = 24.030591000000001,
-                        Order = 17
+                        Order = 16
                     },
                     new Stop
                     {
@@ -232,7 +214,7 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.799804999999999,
                         Longitude = 24.035388000000001,
-                        Order = 18
+                        Order = 17
                     },
                     new Stop
                     {
@@ -241,7 +223,7 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.800471000000002,
                         Longitude = 24.040697999999999,
-                        Order = 19
+                        Order = 18
                     },
                     new Stop
                     {
@@ -250,7 +232,7 @@ namespace CityWay.Infrastructure.Helpers
                         Direction = PointDirections.Backward,
                         Latitude = 49.801600000000001,
                         Longitude = 24.045522999999999,
-                        Order = 20
+                        Order = 19
                     },
                 };
 
@@ -259,7 +241,7 @@ namespace CityWay.Infrastructure.Helpers
                     new Stop
                     {
                         RouteId = route.Id,
-                        Name = "ул. Хуторовка",
+                        Name = "вул. Хуторівка",
                         Direction = PointDirections.Forward,
                         Latitude = 49.801962000000003,
                         Longitude = 24.045496,

@@ -1,12 +1,34 @@
-﻿@model CityWay.Domain.Entities.Route
+﻿@using CityWay.Domain.Enums
+@model CityWay.Domain.Entities.Route
+
+@{
+    var forwardStops = Model.Stops.Where(x => x.Direction == PointDirections.Forward).OrderBy(x => x.Order).ToList();
+    var backwardStops = Model.Stops.Where(x => x.Direction == PointDirections.Backward).OrderBy(x => x.Order).ToList();
+}
 
 <h3>@(Model.Type.ToString())-Route №@Model.Name</h3>
 
 <div class="row">
-    <ul class="list-group">
-        @foreach (var stop in Model.Stops)
-        {
-            <li class="list-group-item">@stop.Name</li>
-        }
-    </ul>
+    <div class="col-lg-6">
+        <div class="w-100">
+            <h5>Forward stops:</h5>
+            <ul class="list-group">
+                @foreach (var stop in forwardStops)
+                {
+                    <li class="list-group-item">@(stop.Order).  @stop.Name</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="w-100">
+            <h5>Backward stops:</h5>
+            <ul class="list-group">
+                @foreach (var stop in backwardStops)
+                {
+                    <li class="list-group-item">@(stop.Order).  @stop.Name</li>
+                }
+            </ul>
+        </div>
+    </divc>
 </div>
