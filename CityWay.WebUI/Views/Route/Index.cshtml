@@ -1,0 +1,51 @@
+﻿@using CityWay.Domain.Enums
+@using CityWay.WebUI.ViewModels
+@model RouteListViewModel
+
+@{
+    var routeTypes = Enum.GetValues(typeof(RouteTypes)).Cast<RouteTypes>().ToList();
+}
+
+<div>Route - Index</div>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    @foreach (var routeType in routeTypes)
+    {
+        var routeTypeName = Enum.GetName(typeof(RouteTypes), routeType);
+        var isActive = routeType == routeTypes.First() ? "active" : ""; // Set the first item as active
+        <li class="nav-item" role="presentation">
+            <button class="nav-link @isActive" id="@routeTypeName-tab" data-bs-toggle="tab" data-bs-target="#@routeTypeName" type="button" role="tab" aria-controls="@routeTypeName" aria-selected="@(isActive == "active" ? "true" : "false")">
+                @routeTypeName
+            </button>
+        </li>
+    }
+</ul>
+
+<div class="tab-content" id="routeTabContent">
+    @foreach (var routeType in routeTypes)
+    {
+        var routeTypeName = Enum.GetName(typeof(RouteTypes), routeType);
+        var isActive = routeType == routeTypes.First() ? "active" : ""; // Set the first item as active
+        <div class="tab-pane fade show @isActive" id="@routeTypeName" role="tabpanel" aria-labelledby="@(routeTypeName)-tab">
+            @{
+                var routes = routeType switch
+                {
+                    RouteTypes.Tram => Model.TramRoutes,
+                    RouteTypes.RouteTaxi => Model.RouteTaxiRoutes,
+                    RouteTypes.Bus => Model.BusRoutes,
+                    RouteTypes.Trolleybus => Model.TrolleybusRoutes,
+                    _ => Enumerable.Empty<CityWay.Domain.Entities.Route>()
+                };
+            }
+            <nav class="navbar navbar-light bg-light">
+                @foreach (var route in routes)
+                {
+                    <div class="container-fluid">
+                        <a class="navbar-brand" asp-controller="Route" asp-action="Detail" asp-route-id="@route.Id">@route.Name</a>
+                    </div>
+                }
+                <li class="list-group-item">a</li>
+            </nav>
+        </div>
+    }
+</div>

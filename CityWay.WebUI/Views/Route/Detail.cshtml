@@ -1,0 +1,12 @@
+﻿@model CityWay.Domain.Entities.Route
+
+<h3>@(Model.Type.ToString())-Route №@Model.Name</h3>
+
+<div class="row">
+    <ul class="list-group">
+        @foreach (var stop in Model.Stops)
+        {
+            <li class="list-group-item">@stop.Name</li>
+        }
+    </ul>
+</div>
