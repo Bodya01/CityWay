@@ -15,10 +15,10 @@
     <div class="col-lg-6">
         <div class="w-100">
             <h5>Forward stops:</h5>
-            <ul class="list-group">
+            <ul class="list-group list-group-numbered">
                 @foreach (var stop in forwardStops)
                 {
-                    <li class="list-group-item list-group-numbered">@stop.Name</li>
+                    <li class="list-group-item">@stop.Name</li>
                 }
             </ul>
         </div>
@@ -26,17 +26,17 @@
     <div class="col-lg-6">
         <div class="w-100">
             <h5>Backward stops:</h5>
-            <ul class="list-group">
+            <ul class="list-group list-group-numbered">
                 @foreach (var stop in backwardStops)
                 {
-                    <li class="list-group-item list-group-numbered">@stop.Name</li>
+                    <li class="list-group-item">@stop.Name</li>
                 }
             </ul>
         </div>
     </div>
 </div>
 
-<div id="map" style="height: 500px;"></div>
+<div id="map" style="height: 500px;" class="mt-4"></div>
 
 @section scripts {
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -54,11 +54,6 @@
             iconUrl: 'https://localhost:7139/icons/stop.svg',
             iconSize: [14, 14],
         })
-
-        // L.marker([51.5, -0.09]).addTo(map)
-        //     .bindPopup('A pretty CSS popup.<br> Easily customizable.');
-        // L.marker([49.801938, 24.04551]).addTo(map)
-        //     .bindPopup('A pretty CSS popup.<br> Easily customizable.');
 
         @foreach (var stop in Model.Stops)
         {
