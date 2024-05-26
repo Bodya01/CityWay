@@ -4,6 +4,9 @@
 @{
     var forwardStops = Model.Stops.Where(x => x.Direction == PointDirections.Forward).OrderBy(x => x.Order).ToList();
     var backwardStops = Model.Stops.Where(x => x.Direction == PointDirections.Backward).OrderBy(x => x.Order).ToList();
+
+    var forwardPoints = Model.Points.Where(x => x.Direction == PointDirections.Forward).OrderBy(x => x.Order).ToList();
+    var backwardPoints = Model.Points.Where(x => x.Direction == PointDirections.Backward).OrderBy(x => x.Order).ToList();
 }
 
 <h3>@(Model.Type.ToString())-Route №@Model.Name</h3>
@@ -15,7 +18,7 @@
             <ul class="list-group">
                 @foreach (var stop in forwardStops)
                 {
-                    <li class="list-group-item">@(stop.Order).  @stop.Name</li>
+                    <li class="list-group-item list-group-numbered">@stop.Name</li>
                 }
             </ul>
         </div>
@@ -26,9 +29,76 @@
             <ul class="list-group">
                 @foreach (var stop in backwardStops)
                 {
-                    <li class="list-group-item">@(stop.Order).  @stop.Name</li>
+                    <li class="list-group-item list-group-numbered">@stop.Name</li>
                 }
             </ul>
         </div>
-    </divc>
+    </div>
 </div>
+
+<div id="map" style="height: 500px;"></div>
+
+@section scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        //var map = L.map('map').setView([49.801938, 24.04551], 13); // Set to your desired location and zoom level
+        var map = L.map('map').setView([49.801938, 24.04551], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        let stopIcon = L.icon({
+            iconUrl: 'https://localhost:7139/icons/stop.svg',
+            iconSize: [14, 14],
+        })
+
+        // L.marker([51.5, -0.09]).addTo(map)
+        //     .bindPopup('A pretty CSS popup.<br> Easily customizable.');
+        // L.marker([49.801938, 24.04551]).addTo(map)
+        //     .bindPopup('A pretty CSS popup.<br> Easily customizable.');
+
+        @foreach (var stop in Model.Stops)
+        {
+            <text>
+                L.marker([@(stop.Latitude.ToString().Replace(',', '.')), @(stop.Longitude.ToString().Replace(',', '.'))], { icon: stopIcon }).addTo(map)
+                    .bindPopup('@stop.Name');
+            </text>
+        }
+
+        var forwardPoints = [
+            @foreach (var point in forwardPoints)
+            {
+                <text>
+                    new L.LatLng(@(point.Longitude.ToString().Replace(',', '.')), @(point.Latitude.ToString().Replace(',', '.'))),
+                </text>
+            }
+        ];
+        var firstpolyline = new L.Polyline(forwardPoints, {
+            color: 'green',
+            weight: 4,
+            opacity: 1,
+            smoothFactor: 1
+        });
+        firstpolyline.addTo(map);
+
+        var backwardPoints = [
+        @foreach (var point in backwardPoints)
+        {
+            <text>
+                new L.LatLng(@(point.Longitude.ToString().Replace(',', '.')), @(point.Latitude.ToString().Replace(',', '.'))),
+            </text>
+        }
+                ];
+        var secondpolyline = new L.Polyline(backwardPoints, {
+            color: 'blue',
+            weight: 4,
+            opacity: 0.5,
+            smoothFactor: 0
+        });
+        secondpolyline.addTo(map);
+
+    </script>
+}
